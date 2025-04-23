@@ -27,7 +27,8 @@
 /* Ensure the toolbar items with tooltips have a high z-index */
 .toolbar-item[data-tool="metrics"],
 .toolbar-item[data-tool="chart"],
-.toolbar-item[data-tool="wallet"] {
+.toolbar-item[data-tool="wallet"],
+.toolbar-item[data-tool="slippage"] {
     z-index: 9999; /* High z-index */
 }
 
@@ -170,7 +171,8 @@
 /* Tooltips - Common Styles */
 .metrics-tooltip,
 .chart-tooltip,
-.wallet-tooltip {
+.wallet-tooltip,
+.slippage-tooltip {
     position: absolute; /* Absolute positioning relative to toolbar item */
     top: 100%; /* Position below the toolbar item */
     left: 50%; /* Center horizontally */
@@ -205,6 +207,50 @@
     width: 280px;
 }
 
+/* Slippage Tooltip Specific */
+.slippage-tooltip {
+    width: 200px;
+    pointer-events: auto; /* Allow interaction with the tooltip */
+}
+
+.slippage-tooltip h4 {
+    margin: 0 0 var(--spacing-sm) 0;
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: #121212;
+}
+
+.slippage-input-container {
+    margin-bottom: var(--spacing-md);
+}
+
+.slippage-input {
+    width: 100%;
+    padding: var(--spacing-sm);
+    border: 2px solid #000;
+    border-radius: var(--border-radius-md);
+    font-size: var(--font-size-sm);
+    background-color: #F4F1EF;
+    color: #121212;
+    text-align: center;
+}
+
+.slippage-ok-button {
+    width: 100%;
+    padding: var(--spacing-sm);
+    background-color: var(--color-accent); /* Gold color */
+    color: #121212;
+    border: 2px solid #000;
+    border-radius: var(--border-radius-md);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.slippage-ok-button:hover {
+    background-color: #CD782B; /* Copper/orange color on hover */
+}
+
 .chart-tooltip img {
     width: 100%; /* Make image fill the tooltip width */
     height: auto; /* Maintain aspect ratio */
@@ -215,7 +261,8 @@
 /* Arrow pointing to the toolbar item - Common for all tooltips */
 .metrics-tooltip::before,
 .chart-tooltip::before,
-.wallet-tooltip::before {
+.wallet-tooltip::before,
+.slippage-tooltip::before {
     content: '';
     position: absolute;
     top: -10px;
@@ -228,7 +275,8 @@
 
 .metrics-tooltip::after,
 .chart-tooltip::after,
-.wallet-tooltip::after {
+.wallet-tooltip::after,
+.slippage-tooltip::after {
     content: '';
     position: absolute;
     top: -7px;
@@ -263,7 +311,9 @@
 /* Show tooltips on hover */
 .toolbar-item[data-tool="metrics"]:hover .metrics-tooltip,
 .toolbar-item[data-tool="chart"]:hover .chart-tooltip,
-.toolbar-item[data-tool="wallet"]:hover .wallet-tooltip {
+.toolbar-item[data-tool="wallet"]:hover .wallet-tooltip,
+.toolbar-item[data-tool="slippage"]:hover .slippage-tooltip,
+.slippage-tooltip:hover {
     opacity: 1;
     visibility: visible;
 }

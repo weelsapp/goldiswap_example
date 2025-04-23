@@ -140,10 +140,16 @@ toolbarItems.forEach(item => {
     item.addEventListener('click', () => {
         // Only process click for the Redeem item
         if (item.dataset.tool === 'redeem') {
-            // Remove active class from all toolbar items
-            toolbarItems.forEach(i => i.classList.remove('active'));
-            // Add active class to the clicked item
-            item.classList.add('active');
+            // Toggle active class on the clicked item
+            if (item.classList.contains('active')) {
+                // If already active, remove the active class
+                item.classList.remove('active');
+            } else {
+                // Remove active class from all toolbar items
+                toolbarItems.forEach(i => i.classList.remove('active'));
+                // Add active class to the clicked item
+                item.classList.add('active');
+            }
             
             // In a real app, this would show the corresponding panel
             // For this demo, we'll just log the selected tool
@@ -153,7 +159,29 @@ toolbarItems.forEach(item => {
     });
 });
 
-// We've removed the code that made the Redeem button active by default
+// Slippage Tooltip OK Button Click Event
+const slippageOkButton = document.querySelector('.slippage-ok-button');
+if (slippageOkButton) {
+    slippageOkButton.addEventListener('click', () => {
+        // Get the slippage value
+        const slippageInput = document.querySelector('.slippage-input');
+        const slippageValue = slippageInput.value;
+        
+        // In a real app, this would set the slippage value for the swap
+        console.log(`Slippage set to: ${slippageValue}`);
+        
+        // Hide the tooltip
+        const slippageTooltip = document.querySelector('.slippage-tooltip');
+        slippageTooltip.style.opacity = '0';
+        slippageTooltip.style.visibility = 'hidden';
+        
+        // After a short delay, reset the tooltip visibility to be controlled by CSS
+        setTimeout(() => {
+            slippageTooltip.style.opacity = '';
+            slippageTooltip.style.visibility = '';
+        }, 300); // Match the transition duration
+    });
+}
 
 // Connect Button Click Event
 connectButton.addEventListener('click', () => {
