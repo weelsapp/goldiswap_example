@@ -24,9 +24,10 @@
     position: relative; /* For tooltip positioning */
 }
 
-/* Ensure the metrics toolbar item has a high z-index */
-.toolbar-item[data-tool="metrics"] {
-    z-index: 9999; /* Same as the tooltip */
+/* Ensure the toolbar items with tooltips have a high z-index */
+.toolbar-item[data-tool="metrics"],
+.toolbar-item[data-tool="chart"] {
+    z-index: 9999; /* High z-index */
 }
 
 /* Make only Redeem clickable */
@@ -165,29 +166,48 @@
     color: var(--color-text-secondary);
 }
 
-/* Metrics Tooltip */
-.metrics-tooltip {
-    position: fixed; /* Changed from absolute to fixed */
-    top: 50%; /* Center vertically */
+/* Tooltips - Common Styles */
+.metrics-tooltip,
+.chart-tooltip {
+    position: absolute; /* Absolute positioning relative to toolbar item */
+    top: 100%; /* Position below the toolbar item */
     left: 50%; /* Center horizontally */
-    transform: translate(-50%, -50%); /* Center both ways */
-    width: 280px;
+    transform: translateX(-50%); /* Center horizontally */
     background-color: var(--color-swap-background); /* Beige background */
     border: 2px solid #000; /* Black outline */
     border-radius: var(--border-radius-md);
     padding: var(--spacing-md);
-    z-index: 10000; /* Even higher z-index */
+    z-index: 99999; /* Even higher z-index */
     opacity: 0; /* Start with 0 opacity for fade effect */
     visibility: hidden; /* Hidden by default */
     box-shadow: var(--shadow-lg); /* Stronger shadow */
     text-align: left;
     color: #121212; /* Dark text */
     transition: opacity 0.3s ease, visibility 0.3s ease; /* Smooth transition */
-    pointer-events: none; /* Allow clicks to pass through */
+    margin-top: var(--spacing-md); /* Space between toolbar item and tooltip */
 }
 
-/* Arrow pointing to the toolbar item */
-.metrics-tooltip::before {
+/* Metrics Tooltip Specific */
+.metrics-tooltip {
+    width: 280px;
+}
+
+/* Chart Tooltip Specific */
+.chart-tooltip {
+    width: 400px; /* Wider to accommodate the chart image */
+    padding: var(--spacing-sm); /* Less padding for the image */
+}
+
+.chart-tooltip img {
+    width: 100%; /* Make image fill the tooltip width */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: var(--border-radius-sm); /* Slight rounding of image corners */
+    display: block; /* Remove any extra space below the image */
+}
+
+/* Arrow pointing to the toolbar item - Common for both tooltips */
+.metrics-tooltip::before,
+.chart-tooltip::before {
     content: '';
     position: absolute;
     top: -10px;
@@ -198,7 +218,8 @@
     border-color: transparent transparent #000 transparent; /* Black border color */
 }
 
-.metrics-tooltip::after {
+.metrics-tooltip::after,
+.chart-tooltip::after {
     content: '';
     position: absolute;
     top: -7px;
@@ -227,8 +248,9 @@
     font-family: monospace;
 }
 
-/* Show tooltip on hover */
-.toolbar-item[data-tool="metrics"]:hover .metrics-tooltip {
+/* Show tooltips on hover */
+.toolbar-item[data-tool="metrics"]:hover .metrics-tooltip,
+.toolbar-item[data-tool="chart"]:hover .chart-tooltip {
     opacity: 1;
     visibility: visible;
 }
