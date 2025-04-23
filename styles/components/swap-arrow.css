@@ -1,0 +1,48 @@
+/* Swap Arrow Styles */
+.swap-arrow-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 0;
+    margin-top: -10px;
+    margin-bottom: -10px;
+    z-index: 10;
+}
+
+.swap-arrow-button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; /* Keep arrow button as circle */
+    background-color: #E0BB58; /* Gold color for arrow button */
+    border: 2px solid #000; /* Double thickness black outline */
+    color: #121212; /* Dark text for better contrast */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+}
+
+.swap-arrow-button:hover {
+    background-color: #CD782B; /* Copper/orange color on hover */
+    transform: scale(1.1);
+}
+
+.swap-arrow-button.active {
+    transform: rotate(180deg);
+}
+
+/* Combined state for when the button is both active and hovered */
+.swap-arrow-button.active:hover {
+    background-color: #CD782B; /* Copper/orange color on hover */
+    transform: rotate(180deg) scale(1.1); /* Combine both transformations */
+}
+
+/* Animation Classes for Swap Arrow */
+.swap-arrow-container.animate {
+    opacity: 0;
+    animation: fadeIn var(--transition-normal) forwards;
+    animation-delay: 0.45s; /* Swap arrow */
+    animation-fill-mode: both; /* Ensure it stays invisible until animation starts */
+}

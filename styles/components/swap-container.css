@@ -1,0 +1,28 @@
+/* Swap Container Styles */
+.swap-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--spacing-xl);
+    margin-top: 0; /* Removed top margin to center the module */
+    flex: 1; /* Take up remaining space */
+}
+
+.swap-module {
+    width: var(--swap-module-width);
+    background-color: var(--color-swap-background); /* Light beige background */
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-xl);
+    box-shadow: var(--shadow-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+    border: 2px solid #000; /* Double thickness black outline */
+}
+
+/* Animation Classes for Swap Module */
+.swap-module.animate {
+    opacity: 0;
+    animation: fadeIn var(--transition-normal) forwards;
+    animation-delay: 0.3s; /* Swap module container */
+}

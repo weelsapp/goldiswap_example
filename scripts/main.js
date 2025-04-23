@@ -20,11 +20,22 @@ const mockTokens = [
 
 // Add animation classes on page load
 document.addEventListener('DOMContentLoaded', () => {
+    // Get references to all elements we need to animate
+    const honeyContainer = document.querySelector('.honey-container');
+    const swapArrow = document.querySelector('.swap-arrow-container');
+    const locksContainer = document.querySelector('.locks-container');
+    const sellButtonContainer = document.querySelector('.sell-button-container');
+    const footer = document.querySelector('.footer');
+    
     // Hide all elements that will be animated
     // This prevents the flicker effect
     swapModule.style.opacity = '0';
     toolbar.style.opacity = '0';
-    document.querySelector('.footer').style.opacity = '0';
+    honeyContainer.style.opacity = '0';
+    swapArrow.style.opacity = '0';
+    locksContainer.style.opacity = '0';
+    sellButtonContainer.style.opacity = '0';
+    footer.style.opacity = '0';
     
     // Remove active class from all toolbar items
     toolbarItems.forEach(item => {
@@ -34,23 +45,48 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize floating elements animation
     initFloatingElements();
     
-    // Add all animation classes immediately with appropriate delays set in CSS
-    // This ensures a smoother animation sequence
+    // Create a sequence of animations with explicit timeouts
+    
+    // First, animate the header
     header.classList.add('animate');
-    swapModule.style.opacity = '';
-    toolbar.style.opacity = '';
-    document.querySelector('.footer').style.opacity = '';
     
-    swapModule.classList.add('animate');
-    toolbar.classList.add('animate');
-    document.querySelector('.footer').classList.add('animate');
-    
-    // Special handling for LOCKS container to ensure it animates after the swap arrow
-    const locksContainer = document.querySelector('.token-input-container:nth-of-type(2)');
-    locksContainer.style.opacity = '0';
+    // After a delay, animate the swap module container and toolbar
     setTimeout(() => {
-        locksContainer.style.opacity = '';
-    }, 500); // Delay showing the LOCKS container by 500ms
+        swapModule.style.opacity = '';
+        toolbar.style.opacity = '';
+        swapModule.classList.add('animate');
+        toolbar.classList.add('animate');
+        
+        // Then animate the Honey container
+        setTimeout(() => {
+            honeyContainer.style.opacity = '';
+            honeyContainer.classList.add('animate');
+            
+            // Then animate the swap arrow
+            setTimeout(() => {
+                swapArrow.style.opacity = '';
+                swapArrow.classList.add('animate');
+                
+                // Then animate the LOCKS container
+                setTimeout(() => {
+                    locksContainer.style.opacity = '';
+                    locksContainer.classList.add('animate');
+                    
+                    // Then animate the sell button
+                    setTimeout(() => {
+                        sellButtonContainer.style.opacity = '';
+                        sellButtonContainer.classList.add('animate');
+                        
+                        // Finally, animate the footer
+                        setTimeout(() => {
+                            footer.style.opacity = '';
+                            footer.classList.add('animate');
+                        }, 50); // 50ms after sell button
+                    }, 50); // 50ms after LOCKS container
+                }, 100); // 100ms after swap arrow - increased delay for more separation
+            }, 50); // 50ms after Honey container
+        }, 100); // 100ms after swap module
+    }, 300); // 300ms after header
 });
 
 // Swap Arrow Button Click Event

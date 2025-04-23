@@ -7,7 +7,11 @@
 /* Import Component Styles */
 @import url('components/header.css');
 @import url('components/toolbar.css');
-@import url('components/swap-module.css');
+@import url('components/swap-container.css');
+@import url('components/honey-container.css');
+@import url('components/swap-arrow.css');
+@import url('components/locks-container.css');
+@import url('components/sell-button.css');
 @import url('components/token-modal.css');
 
 /* Import Responsive Styles (last to override other styles) */
