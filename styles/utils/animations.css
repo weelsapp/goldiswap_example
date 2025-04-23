@@ -1,0 +1,143 @@
+/* Fade In Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Fade Out Animation */
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+/* Slide In From Top Animation */
+@keyframes slideInFromTop {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Slide In From Bottom Animation */
+@keyframes slideInFromBottom {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Rotate Animation */
+@keyframes rotate180 {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(180deg);
+    }
+}
+
+/* Rotate Back Animation */
+@keyframes rotateBack180 {
+    from {
+        transform: rotate(180deg);
+    }
+    to {
+        transform: rotate(0deg);
+    }
+}
+
+/* Pulse Animation */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Shake Animation */
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+        transform: translateX(-5px);
+    }
+    20%, 40%, 60%, 80% {
+        transform: translateX(5px);
+    }
+}
+
+/* Animation Utility Classes */
+.fade-in {
+    animation: fadeIn var(--transition-normal) forwards;
+}
+
+.fade-out {
+    animation: fadeOut var(--transition-normal) forwards;
+}
+
+.slide-in-top {
+    animation: slideInFromTop var(--transition-normal) forwards;
+}
+
+.slide-in-bottom {
+    animation: slideInFromBottom var(--transition-normal) forwards;
+}
+
+.rotate-180 {
+    animation: rotate180 var(--transition-normal) forwards;
+}
+
+.rotate-back-180 {
+    animation: rotateBack180 var(--transition-normal) forwards;
+}
+
+.pulse {
+    animation: pulse var(--transition-normal) infinite;
+}
+
+.shake {
+    animation: shake var(--transition-fast) forwards;
+}
+
+/* Staggered Animation Delays */
+.delay-1 {
+    animation-delay: 0.1s;
+}
+
+.delay-2 {
+    animation-delay: 0.2s;
+}
+
+.delay-3 {
+    animation-delay: 0.3s;
+}
+
+.delay-4 {
+    animation-delay: 0.4s;
+}
+
+.delay-5 {
+    animation-delay: 0.5s;
+}

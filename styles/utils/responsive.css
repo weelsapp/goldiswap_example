@@ -1,0 +1,155 @@
+/* Responsive Breakpoints */
+
+/* Extra Small Devices (phones, 576px and down) */
+@media (max-width: 576px) {
+    :root {
+        --swap-module-width: 100%;
+        --header-height: 60px;
+    }
+
+    .header {
+        padding: 0 var(--spacing-md);
+    }
+
+    .logo {
+        font-size: var(--font-size-lg);
+    }
+
+    .navigation {
+        display: none; /* Hide navigation on mobile */
+    }
+
+    .header-buttons {
+        margin-left: auto;
+    }
+
+    .chain-button {
+        padding: var(--spacing-xs) var(--spacing-sm);
+    }
+
+    .chain-name {
+        display: none; /* Hide chain name on mobile, just show icon */
+    }
+
+    .connect-button {
+        padding: var(--spacing-xs) var(--spacing-sm);
+        font-size: var(--font-size-sm);
+    }
+
+    .toolbar {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .toolbar-item {
+        margin: var(--spacing-xs);
+        padding: var(--spacing-xs) var(--spacing-sm);
+    }
+
+    .swap-container {
+        padding: var(--spacing-md);
+    }
+
+    .swap-module {
+        padding: var(--spacing-md);
+    }
+
+    .token-input {
+        flex-direction: column;
+    }
+
+    .token-selector {
+        margin-bottom: var(--spacing-sm);
+    }
+}
+
+/* Small Devices (tablets, 577px to 768px) */
+@media (min-width: 577px) and (max-width: 768px) {
+    :root {
+        --swap-module-width: 90%;
+    }
+
+    .header {
+        padding: 0 var(--spacing-lg);
+    }
+
+    .navigation ul {
+        gap: var(--spacing-sm);
+    }
+
+    .nav-link {
+        font-size: var(--font-size-sm);
+    }
+
+    .toolbar {
+        flex-wrap: wrap;
+    }
+
+    .swap-container {
+        padding: var(--spacing-lg);
+    }
+}
+
+/* Medium Devices (laptops, 769px to 992px) */
+@media (min-width: 769px) and (max-width: 992px) {
+    :root {
+        --swap-module-width: 70%;
+    }
+
+    .header {
+        padding: 0 var(--spacing-xl);
+    }
+
+    .swap-container {
+        padding: var(--spacing-xl);
+    }
+}
+
+/* Large Devices (desktops, 993px to 1200px) */
+@media (min-width: 993px) and (max-width: 1200px) {
+    :root {
+        --swap-module-width: 500px;
+    }
+}
+
+/* Extra Large Devices (large desktops, 1201px and up) */
+@media (min-width: 1201px) {
+    :root {
+        --swap-module-width: 550px;
+    }
+
+    .header {
+        padding: 0 var(--spacing-xxl);
+    }
+
+    .swap-container {
+        padding: var(--spacing-xxl);
+    }
+}
+
+/* Mobile Menu Toggle (for future implementation) */
+.mobile-menu-toggle {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .mobile-menu-toggle {
+        display: block;
+    }
+}
+
+/* Orientation Changes */
+@media (orientation: landscape) and (max-height: 500px) {
+    .header {
+        position: static;
+    }
+
+    .main-content {
+        height: auto;
+        min-height: 100vh;
+    }
+
+    .swap-module {
+        margin: var(--spacing-lg) auto;
+    }
+}
