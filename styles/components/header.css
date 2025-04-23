@@ -51,12 +51,12 @@
 .nav-link:hover {
     color: var(--color-accent); /* Gold color on hover */
     background-color: transparent;
-    font-weight: bold;
+    /* Removed font-weight: bold */
 }
 
 .nav-link.active {
     color: var(--color-accent); /* Gold color for active item */
-    font-weight: bold;
+    /* Removed font-weight: bold */
 }
 
 /* Header Buttons */
