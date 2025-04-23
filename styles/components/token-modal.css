@@ -1,6 +1,5 @@
 /* Token Modal Styles */
 .token-modal {
-    display: none;
     position: fixed;
     top: 0;
     left: 0;
@@ -10,15 +9,19 @@
     backdrop-filter: blur(8px); /* Blur the entire background */
     -webkit-backdrop-filter: blur(8px); /* For Safari */
     z-index: 10000; /* Higher than tooltips */
+    display: flex;
     justify-content: center;
     align-items: center;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    visibility: hidden; /* Hide but keep in DOM for transitions */
+    transition: opacity 0.5s ease, visibility 0.5s ease; /* Longer, smoother transition */
+    pointer-events: none; /* Prevent interaction when hidden */
 }
 
 .token-modal.active {
-    display: flex;
     opacity: 1;
+    visibility: visible;
+    pointer-events: auto; /* Allow interaction when visible */
 }
 
 .token-modal-content {
@@ -30,11 +33,13 @@
     box-shadow: var(--shadow-lg);
     overflow: hidden;
     transform: scale(0.9);
-    transition: transform 0.3s ease;
+    opacity: 0; /* Start with 0 opacity */
+    transition: transform 0.5s ease, opacity 0.5s ease; /* Longer, smoother transition */
 }
 
 .token-modal.active .token-modal-content {
     transform: scale(1);
+    opacity: 1; /* Fade in to full opacity */
 }
 
 .token-modal-header {

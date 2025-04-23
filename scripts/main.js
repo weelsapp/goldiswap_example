@@ -99,7 +99,7 @@ tokenSelectors.forEach(selector => {
 
 // Token Modal Close Button Click Event
 tokenModalClose.addEventListener('click', () => {
-    // Hide the token modal
+    // Hide the token modal with fade effect
     tokenModal.classList.remove('active');
 });
 
@@ -107,6 +107,7 @@ tokenModalClose.addEventListener('click', () => {
 tokenModal.addEventListener('click', (e) => {
     // If the click is directly on the modal background (not on the content)
     if (e.target === tokenModal) {
+        // Hide the token modal with fade effect
         tokenModal.classList.remove('active');
     }
 });
