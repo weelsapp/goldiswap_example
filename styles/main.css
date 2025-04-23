@@ -49,8 +49,8 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    filter: blur(15px); /* Increased blur effect */
-    opacity: 0.9; /* Higher opacity to make background more visible */
+    filter: blur(8px); /* Changed from 5px to 8px */
+    opacity: 0.25; /* Keeping the 75% darkening */
     z-index: -1; /* Behind all content */
 }
 
