@@ -53,6 +53,25 @@
     border: 2px solid #000; /* Double thickness black outline */
 }
 
+/* Fixed Token Selector (for Honey and Locks) */
+.token-selector.fixed-token {
+    background-color: transparent; /* Transparent background */
+    border: none; /* No border */
+    padding: var(--spacing-sm) 0; /* Remove horizontal padding */
+    cursor: default; /* Not clickable */
+}
+
+.token-selector.fixed-token .token-name {
+    font-size: var(--font-size-lg); /* Larger font size for Honey and Locks */
+    font-weight: 700; /* Make it bolder */
+    color: #121212; /* Ensure text is black */
+}
+
+.token-selector.fixed-token .token-icon {
+    width: 36px; /* Larger icon size */
+    height: 36px; /* Larger icon size */
+}
+
 .token-selector i {
     color: #CD782B; /* Copper/orange color for dropdown arrows */
 }
@@ -61,20 +80,19 @@
     background-color: #D5C6BC; /* Lighter shade for hover state */
 }
 
+.token-selector.fixed-token:hover {
+    background-color: transparent; /* No hover effect for fixed tokens */
+}
+
 .token-icon {
     width: 30px;
     height: 30px;
-    border-radius: 50%; /* Keep token icons as circles */
-    background-color: #B9AAA0; /* Darker shade for token icons */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    /* Removed text content from token icons */
+    object-fit: contain; /* Ensure the SVG fits properly */
 }
 
-.token-name {
-    font-weight: 600;
-    color: #121212; /* Dark text for better contrast */
+.token-selector.fixed-token .token-icon {
+    width: 36px; /* Larger icon size */
+    height: 36px; /* Larger icon size */
 }
 
 /* Amount Container */
@@ -151,6 +169,12 @@
     transform: rotate(180deg);
 }
 
+/* Combined state for when the button is both active and hovered */
+.swap-arrow-button.active:hover {
+    background-color: #CD782B; /* Copper/orange color on hover */
+    transform: rotate(180deg) scale(1.1); /* Combine both transformations */
+}
+
 /* Sell Button */
 .sell-button {
     background-color: var(--color-accent); /* Gold color for sell button */
@@ -184,10 +208,11 @@
     background-color: #EBDDD3; /* Match swap background */
     border-radius: var(--border-radius-md);
     box-shadow: var(--shadow-lg);
-    z-index: 100;
+    z-index: 1000; /* Higher z-index to appear on top */
     margin-top: var(--spacing-sm);
-    max-height: 300px;
+    max-height: 200px;
     overflow-y: auto;
+    border: 2px solid #000; /* Double thickness black outline */
 }
 
 .token-dropdown.active {
@@ -202,10 +227,36 @@
     padding: var(--spacing-md);
     cursor: pointer;
     transition: background-color var(--transition-fast);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Subtle separator */
+}
+
+.token-dropdown-item:last-child {
+    border-bottom: none; /* Remove border from last item */
+}
+
+.token-dropdown-item .token-icon {
+    width: 24px;
+    height: 24px;
+    min-width: 24px; /* Ensure consistent width */
+    background-color: #B9AAA0; /* Darker shade for token icons */
+    border: 1px solid #000; /* Thinner border for dropdown icons */
+}
+
+.token-dropdown-item .token-name {
+    font-size: var(--font-size-sm);
+    font-weight: 500;
 }
 
 .token-dropdown-item:hover {
     background-color: #D9CAC0; /* Lighter shade for hover state */
+}
+
+/* Position the dropdown for bottom token selector */
+.token-selector[data-position="bottom"] .token-dropdown {
+    top: auto;
+    bottom: 100%;
+    margin-top: 0;
+    margin-bottom: var(--spacing-sm);
 }
 
 /* Animation Classes for Swap Module */

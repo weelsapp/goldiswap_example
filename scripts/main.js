@@ -14,16 +14,8 @@ const chainButton = document.querySelector('.chain-button');
 
 // Mock Data
 const mockTokens = [
-    { symbol: 'ETH', name: 'Ethereum', balance: '1.5' },
-    { symbol: 'GOLD', name: 'Goldiswap', balance: '1000.0' },
-    { symbol: 'USDT', name: 'Tether', balance: '2500.0' },
-    { symbol: 'BTC', name: 'Bitcoin', balance: '0.05' },
-    { symbol: 'USDC', name: 'USD Coin', balance: '2500.0' },
-    { symbol: 'DAI', name: 'Dai Stablecoin', balance: '1500.0' },
-    { symbol: 'LINK', name: 'Chainlink', balance: '75.0' },
-    { symbol: 'UNI', name: 'Uniswap', balance: '100.0' },
-    { symbol: 'AAVE', name: 'Aave', balance: '20.0' },
-    { symbol: 'COMP', name: 'Compound', balance: '15.0' }
+    { symbol: 'HONEY', name: 'Honey', balance: '122.0' },
+    { symbol: 'LOCKS', name: 'Locks', balance: '27.0' }
 ];
 
 // Add animation classes on page load
@@ -54,9 +46,9 @@ swapArrowButton.addEventListener('click', () => {
     const bottomInput = document.querySelector('.token-input-container:last-of-type .amount-input');
     
     // Get token data
-    const topTokenIcon = topTokenSelector.querySelector('.token-icon').textContent;
+    const topTokenIcon = topTokenSelector.querySelector('.token-icon').src;
     const topTokenName = topTokenSelector.querySelector('.token-name').textContent;
-    const bottomTokenIcon = bottomTokenSelector.querySelector('.token-icon').textContent;
+    const bottomTokenIcon = bottomTokenSelector.querySelector('.token-icon').src;
     const bottomTokenName = bottomTokenSelector.querySelector('.token-name').textContent;
     
     // Get input values
@@ -66,79 +58,18 @@ swapArrowButton.addEventListener('click', () => {
     // Swap token data with animation
     setTimeout(() => {
         // Swap token data
-        topTokenSelector.querySelector('.token-icon').textContent = bottomTokenIcon;
+        topTokenSelector.querySelector('.token-icon').src = bottomTokenIcon;
         topTokenSelector.querySelector('.token-name').textContent = bottomTokenName;
-        bottomTokenSelector.querySelector('.token-icon').textContent = topTokenIcon;
+        bottomTokenSelector.querySelector('.token-icon').src = topTokenIcon;
         bottomTokenSelector.querySelector('.token-name').textContent = topTokenName;
         
         // Swap input values
         topInput.value = bottomValue;
         bottomInput.value = topValue;
-        
-        // Update balances
-        updateBalances();
     }, 150); // Half of the rotation animation time
 });
 
-// DOM Elements for Token Modal
-const tokenModal = document.getElementById('tokenModal');
-const tokenModalClose = document.querySelector('.token-modal-close');
-const tokenItems = document.querySelectorAll('.token-item');
-let activeTokenSelector = null; // Track which token selector opened the modal
-
-// Token Selector Click Event
-tokenSelectors.forEach(selector => {
-    selector.addEventListener('click', () => {
-        // Store which selector was clicked
-        activeTokenSelector = selector;
-        
-        // Show the token modal
-        tokenModal.classList.add('active');
-    });
-});
-
-// Token Modal Close Button Click Event
-tokenModalClose.addEventListener('click', () => {
-    // Hide the token modal with fade effect
-    tokenModal.classList.remove('active');
-});
-
-// Close Modal When Clicking Outside
-tokenModal.addEventListener('click', (e) => {
-    // If the click is directly on the modal background (not on the content)
-    if (e.target === tokenModal) {
-        // Hide the token modal with fade effect
-        tokenModal.classList.remove('active');
-    }
-});
-
-// Token Item Click Event
-tokenItems.forEach(item => {
-    item.addEventListener('click', () => {
-        // Get the token data from the clicked item
-        const symbol = item.dataset.symbol;
-        const name = item.dataset.name;
-        
-        // Find the token in mock data
-        const token = mockTokens.find(t => t.symbol === symbol);
-        
-        if (activeTokenSelector && token) {
-            // Update token data in the selector
-            activeTokenSelector.querySelector('.token-icon').textContent = symbol;
-            activeTokenSelector.querySelector('.token-name').textContent = name;
-            
-            // Update balance
-            const container = activeTokenSelector.closest('.token-input-container');
-            container.querySelector('.balance-amount').textContent = token.balance;
-            
-            // Hide the token modal
-            tokenModal.classList.remove('active');
-            
-            // Update balances for conversion rate
-            updateBalances();
-        }
-    });
-});
+// Removed token modal functionality since we now have fixed tokens
 
 // Amount Input Event
 amountInputs.forEach(input => {
@@ -151,14 +82,14 @@ amountInputs.forEach(input => {
             ? document.querySelector('.token-input-container:last-of-type .amount-input')
             : document.querySelector('.token-input-container:first-of-type .amount-input');
         
-        // Mock conversion rate: 1 ETH = 1000 GOLD
-        const conversionRate = 1000;
+        // Mock conversion rate: 1 HONEY = 0.22 LOCKS
+        const conversionRate = 0.22;
         const value = parseFloat(input.value) || 0;
         
         if (isTop) {
             otherInput.value = (value * conversionRate).toFixed(2);
         } else {
-            otherInput.value = (value / conversionRate).toFixed(6);
+            otherInput.value = (value / conversionRate).toFixed(2);
         }
     });
 });
@@ -235,8 +166,6 @@ connectButton.addEventListener('click', () => {
     if (connectButton.textContent === 'Connect') {
         connectButton.textContent = '0x29d...05f'; // Truncated wallet address
         connectButton.classList.add('connected'); // Add connected class for styling
-        // Update mock balances
-        updateBalances();
     } else {
         connectButton.textContent = 'Connect';
         connectButton.classList.remove('connected'); // Remove connected class
@@ -245,22 +174,7 @@ connectButton.addEventListener('click', () => {
 
 // Chain Button Click Event - Removed since the button has been removed from the UI
 
-// Update Balances Function
-function updateBalances() {
-    const topTokenSymbol = document.querySelector('.token-input-container:first-of-type .token-icon').textContent;
-    const bottomTokenSymbol = document.querySelector('.token-input-container:last-of-type .token-icon').textContent;
-    
-    const topToken = mockTokens.find(token => token.symbol === topTokenSymbol);
-    const bottomToken = mockTokens.find(token => token.symbol === bottomTokenSymbol);
-    
-    if (topToken) {
-        document.querySelector('.token-input-container:first-of-type .balance-amount').textContent = topToken.balance;
-    }
-    
-    if (bottomToken) {
-        document.querySelector('.token-input-container:last-of-type .balance-amount').textContent = bottomToken.balance;
-    }
-}
+// No need for updateBalances function since we have fixed tokens with fixed balances
 
 // Initialize Floating Elements Animation
 function initFloatingElements() {
