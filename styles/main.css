@@ -8,6 +8,7 @@
 @import url('components/header.css');
 @import url('components/toolbar.css');
 @import url('components/swap-module.css');
+@import url('components/token-modal.css');
 
 /* Import Responsive Styles (last to override other styles) */
 @import url('utils/responsive.css');
@@ -72,13 +73,48 @@ body {
 .footer {
     background-color: transparent; /* Removed background */
     color: #FFFFFF; /* White text */
-    text-align: center;
     padding: var(--spacing-md);
     height: var(--footer-height);
     display: flex;
     align-items: center;
     justify-content: center;
     border-top: none; /* Removed border */
+}
+
+.footer-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: var(--container-width);
+}
+
+.social-icons {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-right: var(--spacing-xl);
+}
+
+.social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity var(--transition-fast);
+}
+
+.social-icon:hover {
+    opacity: 0.8;
+}
+
+.social-logo {
+    height: 20px;
+    width: auto;
+    filter: brightness(0) invert(1); /* Make SVGs white */
+}
+
+.footer p {
+    margin: 0;
 }
 
 /* Button Reset */

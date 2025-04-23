@@ -1,0 +1,116 @@
+/* Token Modal Styles */
+.token-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Dark overlay */
+    z-index: 10000; /* Higher than tooltips */
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.token-modal.active {
+    display: flex;
+    opacity: 1;
+}
+
+.token-modal-content {
+    width: 400px;
+    max-width: 90%;
+    background-color: var(--color-swap-background); /* Light beige background */
+    border-radius: var(--border-radius-lg);
+    border: 2px solid #000; /* Double thickness black outline */
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+.token-modal.active .token-modal-content {
+    transform: scale(1);
+}
+
+.token-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-bottom: 2px solid #000; /* Double thickness black outline */
+}
+
+.token-modal-header h3 {
+    margin: 0;
+    font-size: var(--font-size-lg);
+    color: #121212; /* Dark text */
+}
+
+.token-modal-close {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #121212; /* Dark text */
+    transition: color var(--transition-fast);
+}
+
+.token-modal-close:hover {
+    color: #CD782B; /* Copper/orange color on hover */
+}
+
+.token-modal-body {
+    padding: var(--spacing-md);
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.token-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.token-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius-md);
+    cursor: pointer;
+    transition: background-color var(--transition-fast);
+}
+
+.token-item:hover {
+    background-color: #D9CAC0; /* Lighter shade for hover state */
+}
+
+.token-item .token-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%; /* Keep token icons as circles */
+    background-color: #B9AAA0; /* Darker shade for token icons */
+    border: 2px solid #000; /* Double thickness black outline */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.token-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.token-info .token-name {
+    font-weight: 600;
+    color: #121212; /* Dark text */
+}
+
+.token-info .token-balance {
+    font-size: var(--font-size-xs);
+    color: #5A5A5A; /* Darker text for better contrast */
+}

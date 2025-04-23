@@ -18,7 +18,12 @@ const mockTokens = [
     { symbol: 'GOLD', name: 'Goldiswap', balance: '1000.0' },
     { symbol: 'USDT', name: 'Tether', balance: '2500.0' },
     { symbol: 'BTC', name: 'Bitcoin', balance: '0.05' },
-    { symbol: 'USDC', name: 'USD Coin', balance: '2500.0' }
+    { symbol: 'USDC', name: 'USD Coin', balance: '2500.0' },
+    { symbol: 'DAI', name: 'Dai Stablecoin', balance: '1500.0' },
+    { symbol: 'LINK', name: 'Chainlink', balance: '75.0' },
+    { symbol: 'UNI', name: 'Uniswap', balance: '100.0' },
+    { symbol: 'AAVE', name: 'Aave', balance: '20.0' },
+    { symbol: 'COMP', name: 'Compound', balance: '15.0' }
 ];
 
 // Add animation classes on page load
@@ -75,23 +80,62 @@ swapArrowButton.addEventListener('click', () => {
     }, 150); // Half of the rotation animation time
 });
 
+// DOM Elements for Token Modal
+const tokenModal = document.getElementById('tokenModal');
+const tokenModalClose = document.querySelector('.token-modal-close');
+const tokenItems = document.querySelectorAll('.token-item');
+let activeTokenSelector = null; // Track which token selector opened the modal
+
 // Token Selector Click Event
 tokenSelectors.forEach(selector => {
-    selector.addEventListener('click', (e) => {
-        // In a real app, this would open a token selection modal
-        // For this demo, we'll just cycle through the mock tokens
-        const currentSymbol = selector.querySelector('.token-icon').textContent;
-        const currentIndex = mockTokens.findIndex(token => token.symbol === currentSymbol);
-        const nextIndex = (currentIndex + 1) % mockTokens.length;
-        const nextToken = mockTokens[nextIndex];
+    selector.addEventListener('click', () => {
+        // Store which selector was clicked
+        activeTokenSelector = selector;
         
-        // Update token data
-        selector.querySelector('.token-icon').textContent = nextToken.symbol;
-        selector.querySelector('.token-name').textContent = nextToken.name;
+        // Show the token modal
+        tokenModal.classList.add('active');
+    });
+});
+
+// Token Modal Close Button Click Event
+tokenModalClose.addEventListener('click', () => {
+    // Hide the token modal
+    tokenModal.classList.remove('active');
+});
+
+// Close Modal When Clicking Outside
+tokenModal.addEventListener('click', (e) => {
+    // If the click is directly on the modal background (not on the content)
+    if (e.target === tokenModal) {
+        tokenModal.classList.remove('active');
+    }
+});
+
+// Token Item Click Event
+tokenItems.forEach(item => {
+    item.addEventListener('click', () => {
+        // Get the token data from the clicked item
+        const symbol = item.dataset.symbol;
+        const name = item.dataset.name;
         
-        // Update balance
-        const container = selector.closest('.token-input-container');
-        container.querySelector('.balance-amount').textContent = nextToken.balance;
+        // Find the token in mock data
+        const token = mockTokens.find(t => t.symbol === symbol);
+        
+        if (activeTokenSelector && token) {
+            // Update token data in the selector
+            activeTokenSelector.querySelector('.token-icon').textContent = symbol;
+            activeTokenSelector.querySelector('.token-name').textContent = name;
+            
+            // Update balance
+            const container = activeTokenSelector.closest('.token-input-container');
+            container.querySelector('.balance-amount').textContent = token.balance;
+            
+            // Hide the token modal
+            tokenModal.classList.remove('active');
+            
+            // Update balances for conversion rate
+            updateBalances();
+        }
     });
 });
 
