@@ -20,10 +20,11 @@ const mockTokens = [
 
 // Add animation classes on page load
 document.addEventListener('DOMContentLoaded', () => {
-    // Add animation classes
-    header.classList.add('animate');
-    toolbar.classList.add('animate');
-    swapModule.classList.add('animate');
+    // Hide all elements that will be animated
+    // This prevents the flicker effect
+    swapModule.style.opacity = '0';
+    toolbar.style.opacity = '0';
+    document.querySelector('.footer').style.opacity = '0';
     
     // Remove active class from all toolbar items
     toolbarItems.forEach(item => {
@@ -32,6 +33,24 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Initialize floating elements animation
     initFloatingElements();
+    
+    // Add all animation classes immediately with appropriate delays set in CSS
+    // This ensures a smoother animation sequence
+    header.classList.add('animate');
+    swapModule.style.opacity = '';
+    toolbar.style.opacity = '';
+    document.querySelector('.footer').style.opacity = '';
+    
+    swapModule.classList.add('animate');
+    toolbar.classList.add('animate');
+    document.querySelector('.footer').classList.add('animate');
+    
+    // Special handling for LOCKS container to ensure it animates after the swap arrow
+    const locksContainer = document.querySelector('.token-input-container:nth-of-type(2)');
+    locksContainer.style.opacity = '0';
+    setTimeout(() => {
+        locksContainer.style.opacity = '';
+    }, 500); // Delay showing the LOCKS container by 500ms
 });
 
 // Swap Arrow Button Click Event

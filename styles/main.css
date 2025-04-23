@@ -117,6 +117,42 @@ body {
     margin: 0;
 }
 
+/* Footer Animation */
+.footer.animate {
+    opacity: 0;
+    animation: fadeIn var(--transition-normal) forwards;
+    animation-delay: 0.6s; /* Footer container */
+}
+
+.footer.animate .social-icons {
+    opacity: 0;
+    animation: fadeIn var(--transition-normal) forwards;
+    animation-delay: 0.6s; /* Social icons container */
+}
+
+.footer.animate .social-icon {
+    opacity: 0;
+    animation: fadeIn var(--transition-normal) forwards;
+}
+
+.footer.animate .social-icon:nth-child(1) {
+    animation-delay: 0.6s; /* Oogabooga */
+}
+
+.footer.animate .social-icon:nth-child(2) {
+    animation-delay: 0.6s; /* Discord */
+}
+
+.footer.animate .social-icon:nth-child(3) {
+    animation-delay: 0.6s; /* X (Twitter) */
+}
+
+.footer.animate p {
+    opacity: 0;
+    animation: fadeIn var(--transition-normal) forwards;
+    animation-delay: 0.6s; /* Copyright text */
+}
+
 /* Button Reset */
 button {
     background: none;

@@ -262,25 +262,56 @@
 /* Animation Classes for Swap Module */
 .swap-module.animate {
     opacity: 0;
-    animation: fadeIn var(--transition-normal) 0.6s forwards;
+    animation: fadeIn var(--transition-normal) forwards;
+    animation-delay: 0.3s; /* Swap module container */
 }
 
+/* First token container (Honey) */
 .swap-module.animate .token-input-container:nth-of-type(1) {
     opacity: 0;
-    animation: slideInFromTop var(--transition-normal) 0.7s forwards;
+    animation: slideInFromTop var(--transition-normal) forwards;
+    animation-delay: 0.4s; /* Honey container */
+    animation-fill-mode: both; /* Ensure it stays invisible until animation starts */
 }
 
+.swap-module.animate .token-input-container:nth-of-type(1) .token-selector,
+.swap-module.animate .token-input-container:nth-of-type(1) .token-icon,
+.swap-module.animate .token-input-container:nth-of-type(1) .token-name,
+.swap-module.animate .token-input-container:nth-of-type(1) .amount-container {
+    opacity: 0;
+    animation: fadeIn var(--transition-normal) forwards;
+    animation-delay: 0.4s; /* Same as container */
+}
+
+/* Swap arrow */
 .swap-module.animate .swap-arrow-container {
     opacity: 0;
-    animation: fadeIn var(--transition-normal) 0.8s forwards;
+    animation: fadeIn var(--transition-normal) forwards;
+    animation-delay: 0.45s; /* Swap arrow */
+    animation-fill-mode: both; /* Ensure it stays invisible until animation starts */
 }
 
+/* Second token container (Locks) */
 .swap-module.animate .token-input-container:nth-of-type(2) {
     opacity: 0;
-    animation: slideInFromBottom var(--transition-normal) 0.9s forwards;
+    animation: slideInFromTop var(--transition-normal) forwards;
+    animation-delay: 0.5s; /* Locks container */
+    animation-fill-mode: both; /* Ensure it stays invisible until animation starts */
 }
 
+.swap-module.animate .token-input-container:nth-of-type(2) .token-selector,
+.swap-module.animate .token-input-container:nth-of-type(2) .token-icon,
+.swap-module.animate .token-input-container:nth-of-type(2) .token-name,
+.swap-module.animate .token-input-container:nth-of-type(2) .amount-container {
+    opacity: 0;
+    animation: fadeIn var(--transition-normal) forwards;
+    animation-delay: 0.5s; /* Same as container */
+}
+
+/* Sell button */
 .swap-module.animate .sell-button {
     opacity: 0;
-    animation: fadeIn var(--transition-normal) 1s forwards;
+    animation: fadeIn var(--transition-normal) forwards;
+    animation-delay: 0.55s; /* Sell button */
+    animation-fill-mode: both; /* Ensure it stays invisible until animation starts */
 }
