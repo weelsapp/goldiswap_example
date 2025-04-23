@@ -6,7 +6,9 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7); /* Dark overlay */
+    background-color: rgba(0, 0, 0, 0.7); /* Darker overlay to darken the rest of the website */
+    backdrop-filter: blur(8px); /* Blur the entire background */
+    -webkit-backdrop-filter: blur(8px); /* For Safari */
     z-index: 10000; /* Higher than tooltips */
     justify-content: center;
     align-items: center;
@@ -22,7 +24,7 @@
 .token-modal-content {
     width: 400px;
     max-width: 90%;
-    background-color: var(--color-swap-background); /* Light beige background */
+    background-color: #EBDDD3; /* Fully opaque beige background */
     border-radius: var(--border-radius-lg);
     border: 2px solid #000; /* Double thickness black outline */
     box-shadow: var(--shadow-lg);
@@ -64,21 +66,20 @@
 
 .token-modal-body {
     padding: var(--spacing-md);
-    max-height: 400px;
-    overflow-y: auto;
+    /* Removed max-height and overflow-y to show all tokens at once */
 }
 
 .token-list {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-sm);
+    gap: calc(var(--spacing-sm) / 2); /* Reduced gap by half */
 }
 
 .token-item {
     display: flex;
     align-items: center;
     gap: var(--spacing-md);
-    padding: var(--spacing-md);
+    padding: calc(var(--spacing-md) / 2); /* Reduced padding by half */
     border-radius: var(--border-radius-md);
     cursor: pointer;
     transition: background-color var(--transition-fast);
@@ -110,7 +111,8 @@
     color: #121212; /* Dark text */
 }
 
-.token-info .token-balance {
+.token-info .token-symbol {
     font-size: var(--font-size-xs);
     color: #5A5A5A; /* Darker text for better contrast */
+    font-weight: 600; /* Make symbol bold */
 }
