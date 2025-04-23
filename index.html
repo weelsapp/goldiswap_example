@@ -13,20 +13,18 @@
     <div class="blurred-background"></div>
     <!-- Header Section -->
     <header class="header">
-        <div class="logo">GOLDISWAP</div>
+        <div class="logo">
+            <img src="assets/Logos/Goldilocks white.svg" alt="Goldilocks Logo" class="logo-img">
+        </div>
         <nav class="navigation">
             <ul>
-                <li><a href="#" class="nav-link">What is this?</a></li>
+                <li><a href="#" class="nav-link">Whut is this?</a></li>
                 <li><a href="#" class="nav-link active">Goldiswap</a></li>
                 <li><a href="#" class="nav-link">Goldilend</a></li>
                 <li><a href="#" class="nav-link">Goldivaults</a></li>
             </ul>
         </nav>
         <div class="header-buttons">
-            <button class="chain-button">
-                <span class="chain-icon"><i class="fas fa-link"></i></span>
-                <span class="chain-name">Ethereum</span>
-            </button>
             <button class="connect-button">Connect</button>
         </div>
     </header>
@@ -37,37 +35,66 @@
             <!-- Background elements hidden for now -->
         </div>
 
-        <!-- Toolbar Section -->
-        <div class="toolbar">
-            <div class="toolbar-item" data-tool="wallet">
-                <i class="fas fa-wallet"></i>
-                <span>Wallet</span>
-            </div>
-            <div class="toolbar-item" data-tool="chart">
-                <i class="fas fa-chart-line"></i>
-                <span>Chart</span>
-            </div>
-            <div class="toolbar-item" data-tool="metrics">
-                <i class="fas fa-chart-bar"></i>
-                <span>Metrics</span>
-            </div>
-            <div class="toolbar-item" data-tool="redeem">
-                <i class="fas fa-exchange-alt"></i>
-                <span>Redeem</span>
-            </div>
-            <div class="toolbar-item" data-tool="slippage">
-                <i class="fas fa-sliders-h"></i>
-                <span>Slippage</span>
-            </div>
-        </div>
-
         <!-- Swap Module -->
         <div class="swap-container">
             <div class="swap-module">
+                <!-- Toolbar Section (moved inside swap module) -->
+                <div class="toolbar">
+                    <div class="toolbar-item" data-tool="wallet">
+                        <i class="fas fa-wallet"></i>
+                        <span>Wallet</span>
+                    </div>
+                    <div class="toolbar-item" data-tool="chart">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Chart</span>
+                    </div>
+                    <div class="toolbar-item" data-tool="metrics">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>Metrics</span>
+                        <div class="metrics-tooltip">
+                            <div class="metrics-data">
+                                <div class="label">locks supply:</div>
+                                <div class="value">226,624,377.31</div>
+                                
+                                <div class="label">current fsl:</div>
+                                <div class="value">2,065,360.19</div>
+                                
+                                <div class="label">current psl:</div>
+                                <div class="value">587,945.82</div>
+                                
+                                <div class="label">floor price:</div>
+                                <div class="value">$0.00911</div>
+                                
+                                <div class="label">PSL/FSL ratio:</div>
+                                <div class="value">28.46699%</div>
+                                
+                                <div class="label">target ratio:</div>
+                                <div class="value">29.35876%</div>
+                                
+                                <div class="label">porridge value:</div>
+                                <div class="value">$0.01166</div>
+                                
+                                <div class="label">porridge supply:</div>
+                                <div class="value">249,394,376.28</div>
+                                
+                                <div class="label">porridge market cap:</div>
+                                <div class="value">2.91m</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="toolbar-item" data-tool="redeem">
+                        <i class="fas fa-exchange-alt"></i>
+                        <span>Redeem</span>
+                    </div>
+                    <div class="toolbar-item" data-tool="slippage">
+                        <i class="fas fa-sliders-h"></i>
+                        <span>Slippage</span>
+                    </div>
+                </div>
                 <div class="token-input-container">
                     <div class="token-input">
                         <div class="token-selector">
-                            <div class="token-icon">ETH</div>
+                            <div class="token-icon"></div>
                             <span class="token-name">Ethereum</span>
                             <i class="fas fa-chevron-down"></i>
                         </div>
@@ -90,7 +117,7 @@
                 <div class="token-input-container">
                     <div class="token-input">
                         <div class="token-selector">
-                            <div class="token-icon">GOLD</div>
+                            <div class="token-icon"></div>
                             <span class="token-name">Goldiswap</span>
                             <i class="fas fa-chevron-down"></i>
                         </div>
@@ -111,7 +138,7 @@
 
     <!-- Footer Section -->
     <footer class="footer">
-        <p>&copy; 2025 Goldiswap. All rights reserved.</p>
+        <p>&copy; 2024 Goldilocks DAO. All rights reserved.</p>
     </footer>
 
     <!-- JavaScript Files -->

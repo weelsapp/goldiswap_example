@@ -15,11 +15,14 @@
 
 /* Logo */
 .logo {
-    font-size: var(--font-size-xl);
-    font-weight: 700;
-    color: var(--color-text-primary);
-    letter-spacing: 1px;
     margin-right: var(--spacing-xl);
+    display: flex;
+    align-items: center;
+}
+
+.logo-img {
+    height: 40px; /* Adjust height as needed */
+    width: auto;
 }
 
 /* Navigation */
@@ -46,14 +49,14 @@
 }
 
 .nav-link:hover {
-    color: var(--color-text-primary);
+    color: var(--color-accent); /* Gold color on hover */
     background-color: transparent;
-    font-weight: bold; /* Bold on hover instead of underline */
+    font-weight: bold;
 }
 
 .nav-link.active {
-    color: var(--color-text-primary);
-    font-weight: bold; /* Bold for active item */
+    color: var(--color-accent); /* Gold color for active item */
+    font-weight: bold;
 }
 
 /* Header Buttons */
@@ -68,18 +71,19 @@
     display: flex;
     align-items: center;
     gap: var(--spacing-xs);
-    background-color: rgba(45, 45, 45, 0.5); /* Semi-transparent background */
-    border: none; /* Removed border */
+    background-color: var(--color-surface-light); /* Opaque background */
+    border: 2px solid #000; /* Double thickness black outline */
     color: var(--color-text-secondary);
-    padding: var(--spacing-xs) var(--spacing-md);
+    padding: var(--spacing-sm) var(--spacing-lg); /* Same padding as connect button */
     border-radius: var(--border-radius-md);
     cursor: pointer;
     transition: all var(--transition-fast);
+    height: 100%; /* Match height with connect button */
 }
 
 .chain-button:hover {
-    background-color: rgba(80, 80, 80, 0.5); /* Semi-transparent hover state */
-    color: var(--color-text-primary);
+    background-color: var(--color-surface-lighter); /* Opaque hover state */
+    color: var(--color-accent); /* Gold color on hover */
 }
 
 .chain-icon {
@@ -89,18 +93,29 @@
 }
 
 .connect-button {
-    background-color: rgba(61, 61, 61, 0.5); /* Semi-transparent background */
+    background-color: #CD782B; /* Copper/orange color */
     color: var(--color-text-primary);
-    border: none;
+    border: 2px solid #000; /* Double thickness black outline */
     padding: var(--spacing-sm) var(--spacing-lg);
     border-radius: var(--border-radius-md);
     font-weight: 600;
     cursor: pointer;
-    transition: background-color var(--transition-fast);
+    transition: all var(--transition-normal);
 }
 
 .connect-button:hover {
-    background-color: rgba(80, 80, 80, 0.5); /* Semi-transparent hover state */
+    background-color: #B86A25; /* Darker copper/orange on hover */
+    color: var(--color-text-primary);
+}
+
+/* Connected state for the connect button */
+.connect-button.connected {
+    background-color: #9ACC2E; /* Green color for connected state */
+    color: #121212; /* Dark text for better contrast */
+}
+
+.connect-button.connected:hover {
+    background-color: #8ABB1D; /* Darker green on hover */
 }
 
 /* Animation Classes for Header Elements */

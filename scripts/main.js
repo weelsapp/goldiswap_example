@@ -28,6 +28,11 @@ document.addEventListener('DOMContentLoaded', () => {
     toolbar.classList.add('animate');
     swapModule.classList.add('animate');
     
+    // Remove active class from all toolbar items
+    toolbarItems.forEach(item => {
+        item.classList.remove('active');
+    });
+    
     // Initialize floating elements animation
     initFloatingElements();
 });
@@ -131,41 +136,41 @@ sellButton.addEventListener('click', () => {
 
 // Toolbar Item Click Event
 toolbarItems.forEach(item => {
+    // Add click event listener to all toolbar items
     item.addEventListener('click', () => {
-        // Toggle active class
-        toolbarItems.forEach(i => i.classList.remove('active'));
-        item.classList.add('active');
-        
-        // In a real app, this would show the corresponding panel
-        // For this demo, we'll just log the selected tool
-        console.log(`Selected tool: ${item.dataset.tool}`);
+        // Only process click for the Redeem item
+        if (item.dataset.tool === 'redeem') {
+            // Remove active class from all toolbar items
+            toolbarItems.forEach(i => i.classList.remove('active'));
+            // Add active class to the clicked item
+            item.classList.add('active');
+            
+            // In a real app, this would show the corresponding panel
+            // For this demo, we'll just log the selected tool
+            console.log(`Selected tool: ${item.dataset.tool}`);
+        }
+        // For other items, do nothing (they're just hoverable)
     });
 });
+
+// We've removed the code that made the Redeem button active by default
 
 // Connect Button Click Event
 connectButton.addEventListener('click', () => {
     // In a real app, this would open a wallet connection modal
     // For this demo, we'll just toggle the button text
     if (connectButton.textContent === 'Connect') {
-        connectButton.textContent = 'Connected';
+        connectButton.textContent = '0x29d...05f'; // Truncated wallet address
+        connectButton.classList.add('connected'); // Add connected class for styling
         // Update mock balances
         updateBalances();
     } else {
         connectButton.textContent = 'Connect';
+        connectButton.classList.remove('connected'); // Remove connected class
     }
 });
 
-// Chain Button Click Event
-chainButton.addEventListener('click', () => {
-    // In a real app, this would open a chain selection modal
-    // For this demo, we'll just cycle through some chains
-    const chains = ['Ethereum', 'Berachain', 'Arbitrum', 'Optimism'];
-    const currentChain = chainButton.querySelector('.chain-name').textContent;
-    const currentIndex = chains.indexOf(currentChain);
-    const nextIndex = (currentIndex + 1) % chains.length;
-    
-    chainButton.querySelector('.chain-name').textContent = chains[nextIndex];
-});
+// Chain Button Click Event - Removed since the button has been removed from the UI
 
 // Update Balances Function
 function updateBalances() {

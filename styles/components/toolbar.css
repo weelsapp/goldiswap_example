@@ -4,15 +4,11 @@
     align-items: center;
     justify-content: center;
     gap: var(--spacing-md);
-    margin-top: var(--spacing-xl); /* Reduced top margin */
-    margin-bottom: var(--spacing-xl); /* Reduced bottom margin */
-    padding: var(--spacing-md);
-    background-color: rgba(30, 30, 30, 0.5); /* Semi-transparent background */
-    border-radius: var(--border-radius-lg);
-    box-shadow: var(--shadow-md);
-    max-width: var(--swap-module-width);
-    margin-left: auto;
-    margin-right: auto;
+    margin-bottom: var(--spacing-sm); /* Reduced spacing */
+    padding: var(--spacing-sm); /* Reduced padding */
+    background-color: transparent; /* Removed background */
+    border: none; /* Removed border */
+    width: 100%;
 }
 
 .toolbar-item {
@@ -20,22 +16,48 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: var(--spacing-sm) var(--spacing-md);
+    padding: calc(var(--spacing-sm) / 4) var(--spacing-md); /* Reduced top/bottom padding by 75% */
     border-radius: var(--border-radius-md);
-    cursor: pointer;
-    transition: all var(--transition-fast);
-    color: var(--color-text-secondary);
+    cursor: default; /* Not clickable by default */
+    color: #121212; /* Black text */
     background-color: transparent;
+    position: relative; /* For tooltip positioning */
+}
+
+/* Ensure the metrics toolbar item has a high z-index */
+.toolbar-item[data-tool="metrics"] {
+    z-index: 9999; /* Same as the tooltip */
+}
+
+/* Make only Redeem clickable */
+.toolbar-item[data-tool="redeem"] {
+    cursor: pointer;
+}
+
+.toolbar-item i {
+    transition: color var(--transition-normal); /* Gradual color transition */
+}
+
+.toolbar-item span {
+    transition: color var(--transition-normal); /* Gradual color transition */
 }
 
 .toolbar-item:hover {
-    background-color: rgba(80, 80, 80, 0.5); /* Semi-transparent hover state */
-    color: var(--color-text-primary);
+    background-color: transparent; /* No background on hover */
+    color: #121212; /* Text stays black on hover */
+}
+
+.toolbar-item:hover i {
+    color: #E0BB58; /* Only icon turns gold on hover */
 }
 
 .toolbar-item.active {
-    background-color: rgba(45, 45, 45, 0.7); /* Semi-transparent active state */
-    color: var(--color-text-primary);
+    background-color: transparent; /* No background for active state */
+    color: #CD782B; /* Text turns copper/orange when active */
+}
+
+.toolbar-item.active i {
+    color: #CD782B; /* Icon turns copper/orange when active */
 }
 
 .toolbar-item i {
@@ -77,7 +99,7 @@
 /* Toolbar Content Panels (hidden by default) */
 .toolbar-content {
     display: none;
-    background-color: rgba(30, 30, 30, 0.7); /* Semi-transparent background */
+    background-color: var(--color-surface); /* Opaque background */
     border-radius: var(--border-radius-lg);
     padding: var(--spacing-lg);
     margin-bottom: var(--spacing-lg);
@@ -111,7 +133,7 @@
 .slippage-option {
     padding: var(--spacing-sm) var(--spacing-md);
     border-radius: var(--border-radius-md);
-    background-color: rgba(45, 45, 45, 0.5); /* Semi-transparent background */
+    background-color: var(--color-surface-light); /* Opaque background */
     color: var(--color-text-secondary);
     cursor: pointer;
     transition: all var(--transition-fast);
@@ -119,8 +141,8 @@
 
 .slippage-option:hover,
 .slippage-option.active {
-    background-color: rgba(61, 61, 61, 0.5); /* Semi-transparent hover/active state */
-    color: var(--color-text-primary);
+    background-color: var(--color-surface-lighter); /* Opaque hover/active state */
+    color: var(--color-accent); /* Gold color for hover/active state */
 }
 
 .custom-slippage {
@@ -131,7 +153,7 @@
 }
 
 .custom-slippage input {
-    background-color: rgba(45, 45, 45, 0.5); /* Semi-transparent background */
+    background-color: var(--color-surface-light); /* Opaque background */
     border: 1px solid var(--color-border);
     color: var(--color-text-primary);
     padding: var(--spacing-sm);
@@ -141,4 +163,72 @@
 
 .custom-slippage span {
     color: var(--color-text-secondary);
+}
+
+/* Metrics Tooltip */
+.metrics-tooltip {
+    position: fixed; /* Changed from absolute to fixed */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Center both ways */
+    width: 280px;
+    background-color: var(--color-swap-background); /* Beige background */
+    border: 2px solid #000; /* Black outline */
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-md);
+    z-index: 10000; /* Even higher z-index */
+    opacity: 0; /* Start with 0 opacity for fade effect */
+    visibility: hidden; /* Hidden by default */
+    box-shadow: var(--shadow-lg); /* Stronger shadow */
+    text-align: left;
+    color: #121212; /* Dark text */
+    transition: opacity 0.3s ease, visibility 0.3s ease; /* Smooth transition */
+    pointer-events: none; /* Allow clicks to pass through */
+}
+
+/* Arrow pointing to the toolbar item */
+.metrics-tooltip::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 0 10px 10px 10px;
+    border-style: solid;
+    border-color: transparent transparent #000 transparent; /* Black border color */
+}
+
+.metrics-tooltip::after {
+    content: '';
+    position: absolute;
+    top: -7px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 0 8px 8px 8px;
+    border-style: solid;
+    border-color: transparent transparent var(--color-swap-background) transparent; /* Beige background color */
+}
+
+/* Metrics data styling */
+.metrics-data {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: var(--spacing-xs) var(--spacing-md);
+    font-size: var(--font-size-xs);
+}
+
+.metrics-data .label {
+    font-weight: 600;
+    text-align: left;
+}
+
+.metrics-data .value {
+    text-align: right;
+    font-family: monospace;
+}
+
+/* Show tooltip on hover */
+.toolbar-item[data-tool="metrics"]:hover .metrics-tooltip {
+    opacity: 1;
+    visibility: visible;
 }
