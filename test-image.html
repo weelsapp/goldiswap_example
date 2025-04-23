@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Image</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #121212;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        .image-container {
+            width: 80%;
+            max-width: 800px;
+            margin-bottom: 20px;
+        }
+        img {
+            width: 100%;
+            height: auto;
+            border: 1px solid white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Image Test</h1>
+    
+    <div class="image-container">
+        <h2>Direct Path:</h2>
+        <img src="assets/images/background.png" alt="Background Image (Direct Path)">
+    </div>
+    
+    <div class="image-container">
+        <h2>Absolute Path:</h2>
+        <img src="/Users/julienaziza/Documents/OTHER BUSINESSES/Goldilocks/12. website design test/crypto-swap-demo/assets/images/background.png" alt="Background Image (Absolute Path)">
+    </div>
+    
+    <div class="image-container">
+        <h2>Original Filename:</h2>
+        <img src="assets/images/Goldilocks OG image.png" alt="Background Image (Original Filename)">
+    </div>
+</body>
+</html>
