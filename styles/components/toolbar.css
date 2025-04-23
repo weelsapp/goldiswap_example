@@ -26,7 +26,8 @@
 
 /* Ensure the toolbar items with tooltips have a high z-index */
 .toolbar-item[data-tool="metrics"],
-.toolbar-item[data-tool="chart"] {
+.toolbar-item[data-tool="chart"],
+.toolbar-item[data-tool="wallet"] {
     z-index: 9999; /* High z-index */
 }
 
@@ -168,7 +169,8 @@
 
 /* Tooltips - Common Styles */
 .metrics-tooltip,
-.chart-tooltip {
+.chart-tooltip,
+.wallet-tooltip {
     position: absolute; /* Absolute positioning relative to toolbar item */
     top: 100%; /* Position below the toolbar item */
     left: 50%; /* Center horizontally */
@@ -198,6 +200,11 @@
     padding: var(--spacing-sm); /* Less padding for the image */
 }
 
+/* Wallet Tooltip Specific */
+.wallet-tooltip {
+    width: 280px;
+}
+
 .chart-tooltip img {
     width: 100%; /* Make image fill the tooltip width */
     height: auto; /* Maintain aspect ratio */
@@ -205,9 +212,10 @@
     display: block; /* Remove any extra space below the image */
 }
 
-/* Arrow pointing to the toolbar item - Common for both tooltips */
+/* Arrow pointing to the toolbar item - Common for all tooltips */
 .metrics-tooltip::before,
-.chart-tooltip::before {
+.chart-tooltip::before,
+.wallet-tooltip::before {
     content: '';
     position: absolute;
     top: -10px;
@@ -219,7 +227,8 @@
 }
 
 .metrics-tooltip::after,
-.chart-tooltip::after {
+.chart-tooltip::after,
+.wallet-tooltip::after {
     content: '';
     position: absolute;
     top: -7px;
@@ -230,27 +239,31 @@
     border-color: transparent transparent var(--color-swap-background) transparent; /* Beige background color */
 }
 
-/* Metrics data styling */
-.metrics-data {
+/* Metrics and Wallet data styling */
+.metrics-data,
+.wallet-data {
     display: grid;
     grid-template-columns: auto auto;
     gap: var(--spacing-xs) var(--spacing-md);
     font-size: var(--font-size-xs);
 }
 
-.metrics-data .label {
+.metrics-data .label,
+.wallet-data .label {
     font-weight: 600;
     text-align: left;
 }
 
-.metrics-data .value {
+.metrics-data .value,
+.wallet-data .value {
     text-align: right;
     font-family: monospace;
 }
 
 /* Show tooltips on hover */
 .toolbar-item[data-tool="metrics"]:hover .metrics-tooltip,
-.toolbar-item[data-tool="chart"]:hover .chart-tooltip {
+.toolbar-item[data-tool="chart"]:hover .chart-tooltip,
+.toolbar-item[data-tool="wallet"]:hover .wallet-tooltip {
     opacity: 1;
     visibility: visible;
 }
