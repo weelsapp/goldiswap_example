@@ -45,6 +45,12 @@ body {
     overflow: hidden; /* Prevent scrollbars during 3D transforms */
 }
 
+/* Ensure tooltips and other UI elements appear above 3D transforms */
+.header, .main-content, .footer, .toolbar, .swap-module {
+    position: relative;
+    z-index: 1; /* Higher than background but lower than tooltips */
+}
+
 /* Blurred Background */
 .blurred-background {
     position: fixed;

@@ -74,29 +74,16 @@
 }
 
 /* Toolbar Animation */
+.toolbar.animate {
+    opacity: 0;
+    animation: fadeIn var(--transition-normal) forwards;
+    animation-delay: 0.3s; /* Appear with swap module container */
+}
+
 .toolbar.animate .toolbar-item {
     opacity: 0;
     animation: fadeIn var(--transition-normal) forwards;
-}
-
-.toolbar.animate .toolbar-item:nth-child(1) {
-    animation-delay: 0.1s;
-}
-
-.toolbar.animate .toolbar-item:nth-child(2) {
-    animation-delay: 0.2s;
-}
-
-.toolbar.animate .toolbar-item:nth-child(3) {
-    animation-delay: 0.3s;
-}
-
-.toolbar.animate .toolbar-item:nth-child(4) {
-    animation-delay: 0.4s;
-}
-
-.toolbar.animate .toolbar-item:nth-child(5) {
-    animation-delay: 0.5s;
+    animation-delay: 0.35s; /* All toolbar items appear together */
 }
 
 /* Toolbar Content Panels (hidden by default) */
@@ -181,7 +168,7 @@
     border: 2px solid #000; /* Black outline */
     border-radius: var(--border-radius-md);
     padding: var(--spacing-md);
-    z-index: 99999; /* Even higher z-index */
+    z-index: 999999; /* Super high z-index */
     opacity: 0; /* Start with 0 opacity for fade effect */
     visibility: hidden; /* Hidden by default */
     box-shadow: var(--shadow-lg); /* Stronger shadow */
@@ -189,6 +176,8 @@
     color: #121212; /* Dark text */
     transition: opacity 0.3s ease, visibility 0.3s ease; /* Smooth transition */
     margin-top: var(--spacing-md); /* Space between toolbar item and tooltip */
+    transform-style: flat; /* Ensure no 3D transforms affect this */
+    will-change: opacity, visibility; /* Optimize for animations */
 }
 
 /* Metrics Tooltip Specific */
