@@ -264,3 +264,32 @@ function initFloatingElements() {
         document.head.appendChild(style);
     });
 }
+
+// Add mouse-controlled background panning with 3D effect
+document.addEventListener('mousemove', (e) => {
+    const blurredBackground = document.querySelector('.blurred-background');
+    if (!blurredBackground) return;
+    
+    // Calculate mouse position as percentage of window
+    const mouseX = e.clientX / window.innerWidth;
+    const mouseY = e.clientY / window.innerHeight;
+    
+    // Calculate the offset for a more noticeable effect
+    // Multiply by negative value to make background move in opposite direction of mouse
+    const offsetX = -20 * (mouseX - 0.5); // -10px to 10px movement
+    const offsetY = -20 * (mouseY - 0.5); // -10px to 10px movement
+    
+    // Calculate rotation angles for 3D effect (subtle rotation)
+    const rotateY = 2 * (mouseX - 0.5); // -1deg to 1deg rotation on Y axis
+    const rotateX = -2 * (mouseY - 0.5); // -1deg to 1deg rotation on X axis
+    
+    // Apply the transform with a transition for smoother movement
+    // Add perspective and rotation for 3D effect
+    blurredBackground.style.transition = 'transform 0.3s ease-out';
+    blurredBackground.style.transform = `
+        perspective(1000px) 
+        translate(${offsetX}px, ${offsetY}px) 
+        rotateX(${rotateX}deg) 
+        rotateY(${rotateY}deg)
+    `;
+});
